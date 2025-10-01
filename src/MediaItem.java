@@ -1,13 +1,13 @@
 public abstract class MediaItem {
-    private String id;
+    private int id;
     private String title;
 
-    public MediaItem(String id, String title) {
+    public MediaItem(int id, String title) {
         this.id = id;
         this.title = title;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 

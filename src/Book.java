@@ -2,13 +2,17 @@ public class Book extends MediaItem {
     private String author;
     private int year;
     private int pageCount;
+    private String bookId;
+    public static int bookCount = 0;
 
 
-    public Book(String id, String title, String author, int year, int pageCount) {
+    public Book(int id, String title, String author, int year, int pageCount) {
         super(id, title);
         this.author = author;
         this.year = year;
         this.pageCount = pageCount;
+        this.bookId = "BK-" + String.valueOf(Book.bookCount);
+        Book.bookCount++;
     }
 
     public String getAuthor() {

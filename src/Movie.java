@@ -2,12 +2,16 @@ public class Movie extends MediaItem {
     private String director;
     private int year;
     private int runtimeMinutes;
+    private String movieId;
+    public static int movieCount = 0;
 
-    public Movie(String id, String title, String director, int year, int runtimeMinutes) {
+    public Movie(int id, String title, String director, int year, int runtimeMinutes) {
         super(id, title);
         this.director = director;
         this.year = year;
         this.runtimeMinutes = runtimeMinutes;
+        this.movieId = "MV-" + String.valueOf(Movie.movieCount);
+        Movie.movieCount++;
     }
 
     public String getDirector() {

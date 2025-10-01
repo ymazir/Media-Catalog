@@ -3,12 +3,16 @@ public class Album extends MediaItem {
     private String artist;
     private int year;
     private int trackCount;
+    private String albumId;
+    private static int albumCount = 0;
 
-    public Album(String id, String title, String artist, int year, int trackCount) {
+    public Album(int id, String title, String artist, int year, int trackCount) {
         super(id, title);
         this.artist = artist;
         this.year = year;
         this.trackCount = trackCount;
+        this.albumId = "AL-" + String.valueOf(Album.albumCount);
+        Album.albumCount++;
 
     }
 
