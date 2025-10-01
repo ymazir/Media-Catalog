@@ -4,7 +4,7 @@ public class Album extends MediaItem {
     private int year;
     private int trackCount;
     private String albumId;
-    private static int albumCount = 0;
+    private static int albumCount = 1;
 
     public Album(int id, String title, String artist, int year, int trackCount) {
         super(id, title);
@@ -25,11 +25,14 @@ public class Album extends MediaItem {
     public int getTrackCount() {
         return trackCount;
     }
+    public String getAlbumId() {
+        return albumId;
+    }
 
 
     @Override
     public String summary() {
-        return "Album," + getId() + "," + getTitle() + "," + artist + "," + year + "," + trackCount;
+        return "Album," + getAlbumId() + "," + getTitle() + "," + artist + "," + year + "," + trackCount;
     }
 
     @Override

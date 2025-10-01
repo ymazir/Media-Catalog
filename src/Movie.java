@@ -3,7 +3,7 @@ public class Movie extends MediaItem {
     private int year;
     private int runtimeMinutes;
     private String movieId;
-    public static int movieCount = 0;
+    public static int movieCount = 1;
 
     public Movie(int id, String title, String director, int year, int runtimeMinutes) {
         super(id, title);
@@ -25,10 +25,13 @@ public class Movie extends MediaItem {
     public int getRuntimeMinutes() {
         return runtimeMinutes;
     }
+    public String getMovieId() {
+        return movieId;
+    }
 
     @Override
     public String summary() {
-        return "Movie," + getId() + "," + getTitle() + "," + director + "," + year + "," + runtimeMinutes;
+        return "Movie," + getMovieId() + "," + getTitle() + "," + director + "," + year + "," + runtimeMinutes;
     }
 
     @Override

@@ -3,7 +3,7 @@ public class Book extends MediaItem {
     private int year;
     private int pageCount;
     private String bookId;
-    public static int bookCount = 0;
+    public static int bookCount = 1;
 
 
     public Book(int id, String title, String author, int year, int pageCount) {
@@ -27,9 +27,13 @@ public class Book extends MediaItem {
         return pageCount;
     }
 
+    public String getBookId() {
+        return bookId;
+    }
+
     @Override
     public String summary() {
-        return "Book," + getId() + "," + getTitle() + "," + author + "," + year + "," + pageCount;
+        return "Book," + getBookId() + "," + getTitle() + "," + author + "," + year + "," + pageCount;
     }
 
     @Override
