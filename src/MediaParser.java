@@ -1,25 +1,42 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
+import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * MediaParser class handles operations related to media items such as listing,
+ * adding, saving, and exporting items in different formats.
+ */
 public class MediaParser {
 
+    /**
+     * Constructor for MediaParser.
+     */
     public MediaParser() {
 
     }
-
+    /**
+    * Lists all items in the catalog by reading from "catalog.csv".
+     * If the file does not exist, it informs the user.
+     */
     public static void listItems() {
         try (BufferedReader in = new BufferedReader(new FileReader("catalog.csv"))) {
             String line;
             while ((line = in.readLine()) != null) {
                 System.out.println(line);
             }
+        } catch (FileNotFoundException e) {
+            System.out.println("File does not exist yet, you must add an item to create it.");;
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
+    /**
+     * Adds a new item (Book, Movie, or Album) to the catalog by prompting the user for details.
+     * The new item is appended to "catalog.csv".
+     *
+     * @throws IOException if an I/O error occurs
+     */
     public static void addItem() throws IOException {
         Scanner scanner = new Scanner(System.in);
         System.out.println("What type of item would you like to add? (Book, Movie, or Album)");
@@ -82,20 +99,44 @@ public class MediaParser {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
         } else {
             System.out.println("Invalid item type. Please enter Book, Movie, or Album.");
         }
-
     }
 
+    /**
+     * "saves" the catalog, in reality the catalog is saved with every addition of an item.
+     */
     public static void saveCatalogCSV() {
-
+        System.out.println("Catalog automatically saves after each addition!");
     }
 
+    /**
+     * Exports the current catalog from "catalog.csv" to a binary file "catalog.bin".
+     * Reads all lines from the CSV file, stores them in an ArrayList, and writes
+     * the ArrayList to the binary file.
+     */
     public static void exportCatalogBIN() {
+        ArrayList<String> temp = new ArrayList<String>();
 
+        // Read all lines from catalog.csv and store them in temp
+        try(BufferedReader in = new BufferedReader(new FileReader("catalog.csv"))) {
+            String line;
+            while ((line = in.readLine()) != null) {
+                temp.add(line);
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // Write all lines from temp to catalog.bin
+        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("catalog.bin"))) {
+            out.writeObject(temp);
+            System.out.println("Catalog exported to catalog.bin");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
-
-
 }
